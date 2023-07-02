@@ -1,0 +1,28 @@
+body{
+    background-color: rgb(214, 130, 130);
+
+    .container{
+        background-color:white ;
+        padding-left: 100px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 10px;
+    }
+    .menu{
+    
+        padding-top: 20px;
+        margin: 0px;
+        list-style: none;
+    }
+    .menu li{
+        display: inline;
+        background-color: aqua;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+    a{
+    text-decoration: none;
+    }
+    .menu li:hover{
+        background-color: rgb(108, 170, 170);
+    }
