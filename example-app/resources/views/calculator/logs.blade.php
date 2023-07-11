@@ -10,6 +10,21 @@
 </head>
 
 <body class="bg-info-subtle ">
+
+@if(request()->get('delete'))
+<div class ="alert alert -danger" role ="alert">
+    <div>
+        You Are Trying tO Delete Record({{request()->get('id')}}), Are u sure?
+     </div>
+     <form action ="/calculator/destroy/{{request()->get('id')}}" method="post">
+        @csrf
+        
+        <button type ="submit" class ="btn btn-danger mb-2"> confirm delete</button>
+        
+      <a href ="/calculator/logs">  <button type ="button" class ="btn btn-danger mb-2">Cancel</button>  </a>
+</div>
+@endif
+
     <section class=" container bg-light-subtle p-5 mx-auto my-5">
         <h1 ><center>Calculator Log's</center></h1>
         <hr>
@@ -24,25 +39,31 @@
                     <th scope="col">result</th>
                     <th scope="col">created</th>
                     <th scope="col">updated</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($data as $d)
                 <tr class=>
-                    <th scope="row">{{$d->id}}</th>
+                    <th scope="row"><a href='/calculator/show/{{$d->id}}'>{{$d->id}}</a></th>
                     <td>{{$d->a}}</td>
                     <td>{{$d->b}}</td>
                     <td>{{$d->opr}}</td>
                     <td>{{$d->result}}</td>
                     <td>{{$d->created_at}}</td>
                     <td>{{$d->updated_at}}</td>
+                    <td>
+                        <a href='/calculator/update/{{$d->id}}' class ="btn btn-success mb-2">Edit</a>
+
+                       <a href ="?delete=1&id={{$d->id}}"  class ="btn btn-danger mb-2>Delete">Delete</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
         <br>
         <center>
-        <a class="btn btn-primary" href="/calculator/form"> back to form</a>
+        <a class="btn btn-primary" href="{{route('calc.logs')}}"> back to form</a>
         </center>
     </section>
 </body>
